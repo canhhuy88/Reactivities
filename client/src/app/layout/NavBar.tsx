@@ -8,13 +8,12 @@ import {
 } from "@mui/material";
 import { Container } from "semantic-ui-react";
 import { Group } from "@mui/icons-material";
-type Props = {
-  openForm: () => void;
-};
+import { NavLink } from "react-router";
+import MenuItemLink from "../shared/components/MenuItemLink";
 
-export default function NavBar({ openForm }: Props) {
+export default function NavBar() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, mb: 3 }}>
       <AppBar
         position="static"
         sx={{
@@ -25,7 +24,11 @@ export default function NavBar({ openForm }: Props) {
         <Container maxWidth="xl">
           <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
             <Box>
-              <MenuItem sx={{ display: "flex", gap: 2 }}>
+              <MenuItem
+                sx={{ display: "flex", gap: 2 }}
+                component={NavLink}
+                to="/"
+              >
                 <Group fontSize="large" />
                 <Typography variant="h4" fontWeight="bold">
                   Ractivities
@@ -33,25 +36,9 @@ export default function NavBar({ openForm }: Props) {
               </MenuItem>
             </Box>
             <Box sx={{ display: "flex" }}>
-              <MenuItem
-                sx={{
-                  fontSize: "1.2rem",
-                  textTransform: "uppercase",
-                  fontWeight: "bold",
-                }}
-              >
-                Activities
-              </MenuItem>
-              <MenuItem
-                sx={{
-                  fontSize: "1.2rem",
-                  textTransform: "uppercase",
-                  fontWeight: "bold",
-                }}
-              >
-                About
-              </MenuItem>
-              <MenuItem
+              <MenuItemLink to="/activities">Activities</MenuItemLink>
+              <MenuItemLink to="/createActivity">Create Activity</MenuItemLink>
+              {/* <MenuItemLink
                 sx={{
                   fontSize: "1.2rem",
                   textTransform: "uppercase",
@@ -59,16 +46,17 @@ export default function NavBar({ openForm }: Props) {
                 }}
               >
                 Contact
-              </MenuItem>
+              </MenuItemLink> */}
             </Box>
-            <Button
+            <MenuItem>User</MenuItem>
+            {/* <Button
               onClick={openForm}
               size="large"
               variant="contained"
               color="warning"
             >
               Create Activity
-            </Button>
+            </Button> */}
           </Toolbar>
         </Container>
       </AppBar>
